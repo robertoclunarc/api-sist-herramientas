@@ -10,6 +10,11 @@ export class Servidor {
 
     }
 
+    setting() {
+
+        
+    }
+
     listen() {
 
         this.servidor.listen(console.log('Server on port', 3000))

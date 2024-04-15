@@ -9,6 +9,8 @@ class Servidor {
     constructor() {
         this.servidor = (0, express_1.default)();
     }
+    setting() {
+    }
     listen() {
         this.servidor.listen(console.log('Server on port', 3000));
     }
