@@ -3,6 +3,7 @@ import db from "./database/db";
 import indexRoutes from "./api/routes/index.routes";
 import morgan from "morgan";
 import cors from "cors";
+import categoriaRoutes from "./api/routes/categorias.route";
 
 export class Servidor {
 
@@ -33,6 +34,7 @@ export class Servidor {
 
     routes():void{
         this.app.use(indexRoutes);
+        this.app.use(categoriaRoutes);
     }
 }
 
