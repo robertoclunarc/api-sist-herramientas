@@ -7,3 +7,5 @@ interface Categoria {
     usuariomod?: string;
     fechamod?: Date;
   }
+
+  export default Categoria;
