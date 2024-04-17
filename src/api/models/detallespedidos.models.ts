@@ -17,3 +17,5 @@ interface DetallePedidos {
     usuariomod?: string;
     fechamod?: Date
 }
+
+export default DetallePedidos;

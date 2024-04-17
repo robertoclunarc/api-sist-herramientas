@@ -10,3 +10,5 @@ interface Solicitante {
     usuariomod?: string;
     fechamod?: Date
 }
+
+export default Solicitante;

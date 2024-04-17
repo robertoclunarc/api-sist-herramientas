@@ -1,4 +1,4 @@
-interface Desvolucione {
+interface Devolucione {
 
     iddevolucion?: number;
     cod_dev_ant?: string;
@@ -15,3 +15,5 @@ interface Desvolucione {
     usuariomod?: string;
     fechamod?: Date
 }
+
+export default Devolucione;

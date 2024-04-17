@@ -22,3 +22,6 @@ interface Entrada {
     fechamod?: Date
     
 }
+
+export default Entrada;
+

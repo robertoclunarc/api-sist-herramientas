@@ -14,3 +14,5 @@ interface DetalleEntrada {
     usuariomod?: string;
     fechamod?: Date
 }
+
+export default  DetalleEntrada;

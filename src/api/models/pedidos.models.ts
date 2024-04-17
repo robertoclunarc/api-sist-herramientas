@@ -17,3 +17,6 @@ interface Pedido {
     fechamod?: Date
     
 }
+
+export default Pedido;
+

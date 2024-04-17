@@ -24,3 +24,5 @@ interface Herramientas {
     usuariomod?: string;
     fechamod?: Date
 }
+
+export default Herramientas;

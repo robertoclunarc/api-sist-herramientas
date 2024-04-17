@@ -12,3 +12,5 @@ interface Usuario {
     usuariomod?: string;
     fechamod?: Date
 }
+
+export default Usuario;
