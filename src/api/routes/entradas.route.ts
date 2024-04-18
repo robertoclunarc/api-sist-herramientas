@@ -1,4 +1,4 @@
-import { getEntrada, getEntradaPorId, createEntrada, updateEntrada, deleteEntrada } from "api/controllers/entradas.controller";
+import { getEntrada, getEntradaPorId, createEntrada, updateEntrada, deleteEntrada } from "../controllers/entradas.controller";
 import express from 'express';
 
 const router = express.Router();

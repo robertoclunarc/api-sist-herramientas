@@ -1,4 +1,4 @@
-import { createDetallePedido, deleteDetallePedido, getDetallePedido, getDetallePedidoPorId, updateDetallePedido } from "api/controllers/detallespedidos.controller";
+import { createDetallePedido, deleteDetallePedido, getDetallePedido, getDetallePedidoPorId, updateDetallePedido } from "../controllers/detallespedidos.controller";
 import  express  from "express";
 
 const router = express.Router();

@@ -1,4 +1,4 @@
-import { getPedido, getPedidoPoId, createPedido, updatePedido, deletePedido } from "api/controllers/pedidos.controller";
+import { getPedido, getPedidoPoId, createPedido, updatePedido, deletePedido } from "../controllers/pedidos.controller";
 import express from 'express';
 
 const router = express.Router();

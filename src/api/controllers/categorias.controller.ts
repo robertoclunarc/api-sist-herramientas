@@ -4,8 +4,8 @@ import db from '../../database/db';
 
 export async function getCategoria(): Promise<Categoria[]> {
   
-        const result = await db.querySelect('SELECT * FROM categorias');
-        return result[0] as Categoria[];
+    const result = await db.querySelect('SELECT * FROM categorias');
+    return result[0] as Categoria[];
 
 }
 

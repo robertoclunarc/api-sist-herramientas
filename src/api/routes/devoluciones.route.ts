@@ -1,4 +1,4 @@
-import { getDevolucione, getDevolucionePorId, createDevolucione, updateDevolucione, deleteDevolucione } from "api/controllers/devoluciones.controller";
+import { getDevolucione, getDevolucionePorId, createDevolucione, updateDevolucione, deleteDevolucione } from "../controllers/devoluciones.controller";
 import express from 'express';
 
 const router = express.Router();

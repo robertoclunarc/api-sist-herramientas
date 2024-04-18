@@ -1,4 +1,4 @@
-import { getSolicitante, getSolicitantePorId, createSolicitante, updateSolicitante, deleteSolicitante } from "api/controllers/solicitante.controller";
+import { getSolicitante, getSolicitantePorId, createSolicitante, updateSolicitante, deleteSolicitante } from "..//controllers/solicitante.controller";
 import express from 'express';
 
 const router = express.Router();

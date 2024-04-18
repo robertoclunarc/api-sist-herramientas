@@ -1,5 +1,4 @@
-import { getHerramienta, getHerramientaPorId, createHerramienta, updateHerramienta, deleteHerramienta } from "api/controllers/herramientas.controller";
-import { updateUsuario } from "api/controllers/usuarios.controller";
+import { getHerramienta, getHerramientaPorId, createHerramienta, updateHerramienta, deleteHerramienta } from "../controllers/herramientas.controller";
 import express from 'express';
 
 const router = express.Router();
