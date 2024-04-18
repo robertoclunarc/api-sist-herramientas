@@ -3,7 +3,7 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/detalle_entradas', getDetalleEntrada);
+router.get('/detalle_entrada', getDetalleEntrada);
 router.get('/detalle_entrada/:id', getDetalleEntradaPorId);
 router.post('/detalle_entrada', createDetalleEntrada);
 router.put('/detalle_entrada/:id', updateDetalleEntrada);

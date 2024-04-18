@@ -7,8 +7,14 @@ import cors from "cors";
 
 import categoriaRoutes from "./api/routes/categorias.route";
 import usuarioRoutes from "./api/routes/usuarios.route";
-import detalleentradaRoutes from "./api/routes/detallesentradas.route"
-import detallepedidoRoutes from "./api/routes/detallespedidos.route"
+import detalleentradaRoutes from "./api/routes/detallesentradas.route";
+import detallepedidoRoutes from "./api/routes/detallespedidos.route";
+import devolucioneRoutes from "./api/routes/devoluciones.route";
+import entradaRoutes from "./api/routes/entradas.route";
+import herramientaRoutes from "./api/routes/herramientas.route";
+import pedidoRoutes from "./api/routes/pedidos.route";
+import solicitanteRoutes from "./api/routes/solicitantes.route";
+
 
 export class Servidor {
 
@@ -42,7 +48,12 @@ export class Servidor {
         this.app.use(categoriaRoutes);
         this.app.use(usuarioRoutes);
         this.app.use(detalleentradaRoutes);
-        this.app.use(detallepedidoRoutes)
+        this.app.use(detallepedidoRoutes);
+        this.app.use(devolucioneRoutes);
+        this.app.use(entradaRoutes);
+        this.app.use(herramientaRoutes);
+        this.app.use(pedidoRoutes);
+        this.app.use(solicitanteRoutes);
     }
 }
 
