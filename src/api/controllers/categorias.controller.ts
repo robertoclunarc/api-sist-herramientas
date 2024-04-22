@@ -1,40 +1,129 @@
-
+import { Request, Response } from 'express';
 import Categoria from '../models/categorias.models';
 import db from '../../database/db';
 
-export async function getCategoria(): Promise<Categoria[]> {
-  
-    const result = await db.querySelect('SELECT * FROM categorias');
-    return result[0] as Categoria[];
+export async function getCategoria(req: Request, res: Response): Promise<void> {
+    
+    let result: any;
+
+    try {
+
+        result = await db.querySelect('SELECT * FROM categorias');
+
+        if(!result){
+         
+            res.status(200).json({message: 'Sin resultados'})
+        
+        }
+
+        res.status(200).json(result);
+
+    } catch (error) {
+
+        res.status(400).json({error: error, message: 'Error en la funcion getCategoria'})
+        
+    }
 
 }
 
-export async function getCategoriaPorId(id: number): Promise<Categoria> {
-    
-    const result: any = await db.querySelect('SELECT * FROM categorias WHERE idcategoria = ?', [id]);
-    return result[0][0] as Categoria; 
+export async function getCategoriaPorId(req: Request, res: Response) {
+
+    const idcategoria = req.params.idcategoria;
+    let categoria: Categoria[]=[];
+    let result: any;
+
+    try {
+        
+        result = await db.querySelect('SELECT * FROM categorias WHERE idcategoria = ?', [idcategoria]);
+
+        if(!result){
+
+            res.status(200).json({message: 'No se encuentra herramienta con esa id'})
+
+        }
+
+        categoria = result
+        res.status(200).json(categoria)
+
+    } catch (error) {
+
+        res.status(400).json({error: error, message: 'Error en la funcion getCategoriaPorId'})
+        
+    }
     
 }
  
-export async function createCategoria(categoria: Categoria): Promise<Categoria> {
+export async function createCategoria(req: Request, res: Response) {
     
-    const result: any = await db.querySelect('INSERT INTO categorias SET ?', [categoria]);
-    const insertedId = result[0].insertId;
-    categoria.idcategoria = insertedId;
-    return categoria;
+    const categoria: Categoria = req.body;
+    let result: any;
+
+    try {
+
+        result = await db.querySelect('INSERT INTO categorias SET ?', [categoria]);
+        categoria.idcategoria = result.insertId;
+        res.status(200).json({
+            
+            messge: 'Se registro exitosamente',
+            id: categoria.idcategoria
+        })
+
+    } catch (error) {
+
+        res.status(400).json({error: error, message: 'Error en la funcion createCategoria'})
+        
+    }
   
 }
 
-export async function updateCategoria(categoria: Categoria): Promise<boolean> {
+export async function updateCategoria(req: Request, res: Response) {
     
-    const result: any = await db.querySelect('UPDATE categorias SET ? WHERE idcategoria = ?', [categoria, categoria.idcategoria]);
-    return result[0].affectedRows > 0; 
+    const idcategoria = req.params.idcategoria;
+    const update: Categoria = req.body;
+    let categoria: Categoria[]=[];
+    let result: any;
+
+    try {
+
+        result = await db.querySelect(' UPDATE categorias SET ? WHERE id = ?', [update, idcategoria]);
+
+        if(!result){
+
+            res.status(200).json({message: 'No se encontro herramienta para acualizar'});
+        }
+
+        categoria = result
+        res.status(200).json({message: 'Se actualizo correctamente'})
+        
+    } catch (error) {
+
+        res.status(400).json({error: error, message: 'Error en la funcion updateCategoria'})
+        
+    }
 
 }
 
-export async function deleteCategoria(id: number): Promise<boolean> {
+export async function deleteCategoria(req: Request, res: Response) {
     
-    const result: any = await db.querySelect('DELETE FROM categorias WHERE idcategoria = ?', [id]);
-    return result[0].affectedRows > 0;
+    const idcategoria = req.params.idcategoria;
+    let categoria: Categoria[]=[];
+    let result: any;
+
+    try {
+        
+        result = await db.querySelect('DELETE FROM categorias WHERE idcategoria = ?', [idcategoria]);
+
+        if(!result){
+
+            res.status(200).json({message: 'No se encontro herramienta para eliminar'})
+        }
+
+        categoria = result;
+        res.status(200).json({message: 'Se elimino herramienta correctamente'})
+
+    } catch (error) {
+        
+        res.status(400).json({error: error, message: 'Error en la funcion deleteCategoria'})
+    }
 
 }
