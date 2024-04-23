@@ -8,10 +8,10 @@ export async function getDevolucione(req: Request, res: Response): Promise< void
 
     try {
         result = await db.querySelect('SELECT * FROM devoluciones');
-        if(!result) {
-            res.status(200).json({message: 'Sin resultados'})
-        }
-        res.status(200).json(result)
+            if(!result) {
+                res.status(200).json({message: 'Sin resultados'})
+            }
+            res.status(200).json(result)
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion getDevolucione'})
     }
@@ -25,11 +25,11 @@ export async function getDevolucionePorId(req: Request, res: Response) {
 
     try {
         result = await db.querySelect('SELECT * FROM devoluciones WHERE iddevolucione = ?', [iddevolucion]);
-        if(!result) {
-            res.status(200).json({message: 'No hay resultados'})
-        }
-        devoluciones = result
-        res.status(200).json(devoluciones)
+            if(!result) {
+                res.status(200).json({message: 'No hay resultados'})
+            }
+            devoluciones = result
+            res.status(200).json(devoluciones)
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion getDevolucionePorId'})
     }    
@@ -61,11 +61,11 @@ export async function updateDevolucione(req: Request, res: Response) {
 
     try {
         result = await db.querySelect('UPDATE devoluciones SET ? WHERE iddevolucione = ?', [update, iddevolucion]);
-        if(!result) {
-            res.status(200).json({message: 'No se pudo actualizar'});
-        }
-        devoluciones = result
-        res.status(200).json({message: 'Se actualizo conrrectamente'})
+            if(!result) {
+                res.status(200).json({message: 'No se pudo actualizar'});
+            }
+            devoluciones = result
+            res.status(200).json({message: 'Se actualizo conrrectamente'})
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion updateDevolucione'})
     }
@@ -80,12 +80,12 @@ export async function deleteDevolucione(req: Request, res: Response) {
 
     try {
         result = await db.querySelect('DELETE FROM devoluciones SET ? WHERE iddevolucione = ?', [iddevolucion]);
-        if(!result) {
-            res.status(200).json({message: 'No hay resultado'})
-        }
-        devoluciones = result
-        res.status(200).json({message: 'Se elimino correctamente'})
+            if(!result) {
+                res.status(200).json({message: 'No hay resultado'})
+            }
+            devoluciones = result
+            res.status(200).json({message: 'Se elimino correctamente'})
     } catch (error) {
-        
+        res.status(400).json({error: error, message: 'Error en la funcion deleteDevolucione'})
     }
 }

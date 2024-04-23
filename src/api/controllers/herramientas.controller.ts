@@ -1,39 +1,91 @@
+import { Request, Response } from "express";
 import Herramientas from "../models/herramientas.models";
 import db from "../../database/db";
 
-export async function getHerramienta(): Promise<Herramientas[]> {
+export async function getHerramienta(req: Request, res: Response): Promise< void > {
 
-    const result = await db.querySelect('SELECT * FROM herramientas');
-    return result[0] as Herramientas[];
+    let result: any
+
+    try {
+        result = await db.querySelect('SELECT * FROM herramientas');
+            if(!result) {
+                res.status(200).json({message: 'Sin resultados'})
+            }
+    } catch (error) {
+        res.status(400).json({error: error, message: 'Error en la funcion getHerramienta'})
+    }    
+}
+
+export async function getHerramientaPorId(req: Request, res: Response) {
+
+    const ideherramienta = req.params.id;
+    let herramientas: Herramientas[]=[];
+    let result: any;
+    
+    try {
+        result = await db.querySelect('SELECT * FROM herramientas SET ? WHERE idherramienta', [ideherramienta]);
+            if(!result) {
+                res.status(200).json({message: 'No hay resultado'})
+            }
+            herramientas = result
+            res.status(200).json(result)
+    } catch (error) {
+        res.status(400).json({error: error, message: 'Error en la funcion getHerramientaPorId'})
+    }
+}
+
+export async function createHerramienta(req: Request, res: Response) {
+
+    const herramientas: Herramientas = req.body;
+    let result: any;
+
+    try {
+        result = await db.querySelect('INSERT INTO herramientas SET ?', [herramientas]);
+        herramientas.idherramienta = result.insertId;
+        res.status(200).json({
+            message: 'Se registro exitosamente',
+            id: herramientas.idherramienta
+        })
+    } catch (error) {
+        res.status(400).json({error: error, message: 'Error en la funcion createHerramienta'})
+    }
     
 }
 
-export async function getHerramientaPorId(id: number): Promise<Herramientas> {
+export async function updateHerramienta(req: Request, res: Response) {
 
-    const result: any = await db.querySelect('SELECT * FROM herramientas SET ? WHERE idherramienta', [id]);
-    return result[0][0] as Herramientas;
-    
+    const ideherramienta = req.params.id;
+    const update: Herramientas = req.body;
+    let herramientas: Herramientas[]=[];
+    let result: any;
+
+    try {
+        result = await db.querySelect('UPDATE herramientas SET ? WHERE idherramienta = ?', [update, ideherramienta]);
+            if(!result) {
+                res.status(200).json({message: 'No se pudo actualizar'})
+            }
+            herramientas = result
+            res.status(200).json({message: 'Se actualizo correctamente'})
+    } catch (error) {
+        res.status(400).json({error: error, message: 'Error en la funcion updateHerramienta'})
+    }
 }
 
-export async function createHerramienta(herramientas: Herramientas): Promise<Herramientas> {
+export async function deleteHerramienta(req: Request, res: Response) {
 
-    const result: any = await db.querySelect('INSERT INTO herramientas SET ?', [herramientas]);
-    const insertedId = result[0].insertId;
-    herramientas.idherramienta = insertedId;
-    return herramientas;
-    
-}
+    const idherramienta = req.params.id;
+    let herramientas: Herramientas[]=[];
+    let result: any;
 
-export async function updateHerramienta(herramientas: Herramientas): Promise<boolean> {
-
-    const result: any = await db.querySelect('UPDATE herramientas SET ? WHERE idherramienta = ?', [herramientas, herramientas.idherramienta]);
-    return result[0].affectedRows > 0;
-    
-}
-
-export async function deleteHerramienta(id: number): Promise<boolean> {
-
-    const result: any = await db.querySelect('DELETE FROM herramientas SET ? ideherramienta = ?', [id]);
-    return result[0].affectedRows > 0;
+    try {
+        result = await db.querySelect('DELETE FROM herramientas SET ? ideherramienta = ?', [idherramienta]);
+            if(!result) {
+                res.status(200).json({message: 'No hay resultado'})
+            }
+            herramientas = result;
+            res.status(200).json({message: 'Se elimino correctamente'})
+    } catch (error) {
+        res.status(400).json({error: error, message: 'Error en la funcion deleteHerramienta'})
+    }
     
 }

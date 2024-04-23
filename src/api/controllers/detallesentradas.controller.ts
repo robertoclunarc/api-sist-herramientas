@@ -8,10 +8,10 @@ export async function getDetalleEntrada(req: Request, res: Response): Promise<vo
 
     try {    
         result = await db.querySelect('SELECT * FROM detallesentradas');
-        if(!result){
+            if(!result){
             res.status(200).json({message: 'Sin resultado'})
-        }
-        res.status(200).json(result)
+            }
+            res.status(200).json(result)
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion getDetalleEntrada'})
     }    
@@ -26,11 +26,11 @@ export async function getDetalleEntradaPorId(req: Request, res: Response) {
 
     try {
         result = await db.querySelect('SELECT * FROM detallesentradas WHERE iddetalleentrada = ?', [iddetalleentrada]);
-        if(!result){
-            res.status(200).json({message: 'No hay resultado'})
-        }
-        detalleentrada = result;
-        res.status(200).json(detalleentrada);
+            if(!result){
+                res.status(200).json({message: 'No hay resultado'})
+            }
+            detalleentrada = result;
+            res.status(200).json(detalleentrada);
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion getDetalleentradaPorId'})
     }
@@ -64,11 +64,11 @@ export async function updateDetalleEntrada(req: Request, res: Response) {
 
     try {
         result = await db.querySelect('UPDATE detallesentradas SET ? WHERE idetalleentrada',[update, iddetalleentrada]);
-        if(!result) {
-            res.status(200).json({message: 'No se pudo actualizar'})
-        }
-        detalleentrada = result
-        res.status(200).json({message: 'Se actulizo correctamente'})
+            if(!result) {
+                res.status(200).json({message: 'No se pudo actualizar'})
+            }
+            detalleentrada = result
+            res.status(200).json({message: 'Se actulizo correctamente'})
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion updateDetalleEntrada'})
     }
@@ -82,9 +82,9 @@ export async function deleteDetalleEntrada(req: Request, res: Response) {
     
     try {
         result = await db.querySelect('DELETE FROM detalleentrada WHERE iddetalleentrada = ?', [idetalleentrada]);
-        if(!result) {
-            res.status(200).json({message: 'No hay resultado'});
-        }
+            if(!result) {
+                res.status(200).json({message: 'No hay resultado'});
+            }
         res.status(200).json({message: 'Se elimino correctamente'})
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion deleteDetalleEntrada'})

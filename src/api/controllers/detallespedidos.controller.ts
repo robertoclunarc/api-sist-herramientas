@@ -8,10 +8,10 @@ export async function getDetallePedido( req: Request, res: Response): Promise< v
 
     try {
         result = await db.querySelect('SELECT FROM detallespedidos');
-        if(!result) {
-            res.status(200).json({message: 'Sin resultado'})
-        }
-        res.status(200).json(result)
+            if(!result) {
+                res.status(200).json({message: 'Sin resultado'})
+            }
+            res.status(200).json(result)
     } catch (error) {
         res.status(200).json({error: error, message: 'Error en la funcion getDetallePedido'})
     }
@@ -26,11 +26,11 @@ export async function getDetallePedidoPorId(req: Request, res: Response) {
 
     try {    
         result = await db.querySelect('SELECT FROM detallespedidos WHERE iddetallespedidos = ?', [iddetallepedido]);
-        if(!result) {
-            res.status(200).json({message: 'No hay resultado'})
-        }
-        detallespedidos = result;
-        res.status(200).json(detallespedidos)
+            if(!result) {
+                res.status(200).json({message: 'No hay resultado'})
+            }
+            detallespedidos = result;
+            res.status(200).json(detallespedidos)
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion getDetallePedidPorId'})
     }
@@ -64,11 +64,11 @@ export async function updateDetallePedido(req: Request, res: Response) {
 
     try {
         result = await db.querySelect('UPDATE detallesentradas SET ? WHERE idetalleentrada',[update, iddetallepedido]);
-        if(!result) {
-            res.status(200).json({message: 'No se pudo actualizar'});
-        }
-        detallespedidos = result;
-        res.status(200).json({message: 'Se actualizo correctamente'})
+            if(!result) {
+                res.status(200).json({message: 'No se pudo actualizar'});
+            }
+            detallespedidos = result;
+            res.status(200).json({message: 'Se actualizo correctamente'})
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion updateDeatllePedido'})
     }
@@ -83,11 +83,11 @@ export async function deleteDetallePedido(req: Request, res: Response) {
 
     try {
         result = await db.querySelect('DELETE FROM detallespedidos WHERE iddetallepedido = ?', [iddetallepedido]);
-        if(!result) {
-            res.status(200).json({message: 'No hay resultado'})
-        }
-        detallespedidos = result;
-        res.status(200).json({message: 'Se elimino correctamente'})
+            if(!result) {
+                res.status(200).json({message: 'No hay resultado'})
+            }
+            detallespedidos = result;
+            res.status(200).json({message: 'Se elimino correctamente'})
     } catch (error) {
         
     }    

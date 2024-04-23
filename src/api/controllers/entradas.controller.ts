@@ -1,38 +1,91 @@
+import { Request, Response } from "express";
 import Entrada from "../models/entradas.models";
 import db from "../../database/db";
 
-export async function getEntrada(): Promise<Entrada[]> {
+export async function getEntrada(req: Request, res: Response): Promise<void> {
 
-    const result = await db.querySelect('SELECT * FROM entradas');
-    return result[0] as Entrada[];
+    let result: any;
+
+    try {
+        result = await db.querySelect('SELECT * FROM entradas');
+            if(!result) {
+                res.status(200).json({message: 'Sin resultados'})
+            }
+            res.status(200).json(result)
+    } catch (error) {
+        res.status(400).json({error: error, message: 'Error en la funcion getEntrada'})
+    }    
+}
+
+export async function getEntradaPorId(req: Request, res: Response) {
+
+    const identrada = req.params.id;
+    let entradas: Entrada[]=[];
+    let result: any;
+    try {
+        result = await db.querySelect('SELECT * FROM entradas WHERE identrada = ?', [identrada]);
+            if(!result) {
+                res.status(200).json({message: 'No hay resultado'})
+            }
+            entradas = result;
+            res.status(200).json(entradas)
+    } catch (error) {
+        res.status(400).json({error: error, message: 'Error en la funcion getEntradaPorId'})
+    }
     
 }
 
-export async function getEntradaPorId(id: number): Promise<Entrada> {
+export async function createEntrada(req: Request, res: Response) {
 
-    const result: any = await db.querySelect('SELECT * FROM entradas WHERE identrada = ?', [id]);
-    return result[0][0] as Entrada;
-    
+    const entradas: Entrada = req.body;
+    let result: any;
+
+    try {
+        result = await db.querySelect('INSERT INTO devoluciones SET ?', [entradas]);
+        entradas.identrada = result.insertId;
+        res.status(200).json({
+            message: 'Se registro correctamente',
+            id: entradas.identrada
+        })
+    } catch (error) {
+        res.status(200).json({errror: error, message: 'Error en la funcion createEntrada'})
+    }
 }
 
-export async function createEntrada(entradas: Entrada): Promise<Entrada> {
+export async function updateEntrada(req: Request, res: Response) {
 
-    const result: any = await db.querySelect('INSERT INTO devoluciones SET ?', [entradas]);
-    const insertedId = result[0].insertId;
-    entradas.identrada = insertedId;
-    return entradas;
+    const identrada = req.params.id;
+    const update: Entrada = req.body;
+    let entradas: Entrada[]=[];
+    let result: any;
+
+    try {
+        result = await db.querySelect('UPDATE entradas SET ? WHERE identrada = ?', [update, identrada]);
+            if(!result) {
+                res.status(200).json({message: 'No se pudo actualizar'})
+            }
+            entradas = result
+            res.status(200).json({message: 'Se actualizo correctamente'})
+    } catch (error) {
+        res.status(400).json({error: error, message: 'Error en la funcion updateEntrada'})
+    }    
 }
 
-export async function updateEntrada(entradas: Entrada): Promise<boolean> {
+export async function deleteEntrada(req: Request, res: Response) {
 
-    const result: any = await db.querySelect('UPDATE entradas SET ? WHERE identrada = ?', [entradas, entradas.identrada]);
-    return result[0].affectedRows > 0;
-    
-}
+    const identrada = req.params.id;
+    let entradas: Entrada[]=[];
+    let result: any;
 
-export async function deleteEntrada(id: number): Promise<boolean> {
-
-    const result: any = await db.querySelect('DELETE FROM entradas SET ? WHERE identrada = ?', [id]);
-    return result[0].affectedRows > 0
+    try {
+        result = await db.querySelect('DELETE FROM entradas SET ? WHERE identrada = ?', [identrada]);
+            if(!result) {
+                res.status(200).json({message: 'No hay resultado'})
+            }
+            entradas = result;
+            res.status(200).json({message: 'Se elimino correctamente'})
+    } catch (error) {
+        res.status(400).json({error: error, message: 'Error en la funcion deleteEntrada'})
+    }
     
 }
