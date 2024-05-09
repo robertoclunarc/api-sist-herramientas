@@ -45,15 +45,15 @@ export class Servidor {
 
     routes():void{
         this.app.use(indexRoutes);
-        this.app.use(categoriaRoutes);
-        this.app.use(usuarioRoutes);
-        this.app.use(detalleentradaRoutes);
-        this.app.use(detallepedidoRoutes);
-        this.app.use(devolucioneRoutes);
-        this.app.use(entradaRoutes);
-        this.app.use(herramientaRoutes);
-        this.app.use(pedidoRoutes);
-        this.app.use(solicitanteRoutes);
+        this.app.use('/sistherramientas', categoriaRoutes);
+        this.app.use('/sistherramientas', usuarioRoutes);
+        this.app.use('/sistherramientas', detalleentradaRoutes);
+        this.app.use('/sistherramientas', detallepedidoRoutes);
+        this.app.use('/sistherramientas', devolucioneRoutes);
+        this.app.use('/sistherramientas', entradaRoutes);
+        this.app.use('/sistherramientas', herramientaRoutes);
+        this.app.use('/sistherramientas', pedidoRoutes);
+        this.app.use('/sistherramientas', solicitanteRoutes);
     }
 }
 
