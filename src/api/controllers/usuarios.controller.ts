@@ -17,23 +17,31 @@ export async function getUsuario(req: Request, res: Response): Promise< void > {
     }
 }
 
-export async function getUsuarioPorId(req: Request, res: Response) {
+export async function logear(req: Request, res: Response) {
     
-    const idusuario = req.params.id
-    let usuario: Usuario[]=[];
+    let user: string = req.body.user;
+    let passw: string = req.body.passw;
+    let usuario: Usuario;
+    
     let result: any;
-
+    let mensaje: {msj: string, status: string, usuario?: Usuario}
     try {
-        result = await db.querySelect('SELECT * FROM usuarios WHERE idusuario = ?', [idusuario]);
+        result = await db.querySelect('SELECT * FROM usuarios WHERE user = ?', [user]);
             if(!result) {
-                res.status(200).json({message: 'No hay resultado'})
+                res.status(200).json({msj: 'No hay resultado'})
             }
-            usuario = result;
-            res.status(200).json(result)
+            usuario = result[0];
+    
+            if (usuario.clave === passw){
+                mensaje={msj: 'Usuario Correctamente Logeado', status: 'OK', usuario: usuario}
+            }else{
+                mensaje={msj: 'Clave Incorrecta', status: 'Error'}
+            }
+            res.status(200).json(mensaje)
     } catch (error) {
-        res.status(400).json({error: error, message: 'Error en la funcion getUsuarioPorId'})
+        res.status(400).json({error: error, message: 'Error en la funcion logIn'})
     }
-}
+} 
 
 export async function createUsuario(req: Request, res: Response) {
 

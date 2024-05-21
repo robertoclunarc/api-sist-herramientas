@@ -36,7 +36,7 @@ export class Servidor {
     }
 
     config() {
-        this.app.set('port', process.env.PORT || 3200);
+        this.app.set('port', process.env.PORT || 2200);
         this.app.use(morgan('dev'));
         this.app.use(cors());
         this.app.use(express.json());
@@ -44,16 +44,16 @@ export class Servidor {
     }
 
     routes():void{
-        this.app.use(indexRoutes);
-        this.app.use('/sistherramientas', categoriaRoutes);
-        this.app.use('/sistherramientas', usuarioRoutes);
-        this.app.use('/sistherramientas', detalleentradaRoutes);
-        this.app.use('/sistherramientas', detallepedidoRoutes);
-        this.app.use('/sistherramientas', devolucioneRoutes);
-        this.app.use('/sistherramientas', entradaRoutes);
-        this.app.use('/sistherramientas', herramientaRoutes);
-        this.app.use('/sistherramientas', pedidoRoutes);
-        this.app.use('/sistherramientas', solicitanteRoutes);
+        this.app.use('/', indexRoutes);
+        this.app.use('/sistherramientas/categoria', categoriaRoutes);
+        this.app.use('/sistherramientas/login', usuarioRoutes);
+        this.app.use('/sistherramientas/detalleentrada', detalleentradaRoutes);
+        this.app.use('/sistherramientas/detallepedido', detallepedidoRoutes);
+        this.app.use('/sistherramientas/devoluciones', devolucioneRoutes);
+        this.app.use('/sistherramientas/entrada', entradaRoutes);
+        this.app.use('/sistherramientas/herramienta', herramientaRoutes);
+        this.app.use('/sistherramientas/pedido', pedidoRoutes);
+        this.app.use('/sistherramientas/solicitante', solicitanteRoutes);
     }
 }
 

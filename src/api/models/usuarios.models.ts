@@ -2,6 +2,7 @@ interface Usuario {
 
     idusuario?: number;
     idusuarioan?: number;
+    user?: string;
     nombre?: string;
     ocupacion?: string;
     clave?: string;
