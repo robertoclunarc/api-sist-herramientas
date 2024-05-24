@@ -3,10 +3,12 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/herramienta', getHerramienta);
-router.get('/herramienta/:id', getHerramientaPorId);
-router.post('/herramienta', createHerramienta);
-router.put('/herramienta/:id', updateHerramienta);
-router.delete('/herramienta/:id', deleteHerramienta);
+router.get('/all', getHerramienta);
+router.get('/getid/:id', getHerramientaPorId);
+router.post('/insertar', createHerramienta);
+router.put('/update/:id', updateHerramienta);
+router.delete('/delete/:id', deleteHerramienta);
+
+console.log(getHerramienta)
 
 export default router;

@@ -3,11 +3,13 @@ interface Herramientas {
     idherramienta?: number;
     codigoant?: string;
     descripcion?: string;
-    fecha?: Date;
+    fecha?: string;
     stock?: number;
+    marca?: string;
+    nombre?: string;
     observaciones?: string;
-    idcategoria?: number;
-    categoriant?: string;
+    //idcategoria?: number;
+    //categoriant?: string;
     ubicacion?: number;
     observacioni?: string;
     cantidadminima?: number;
@@ -20,9 +22,9 @@ interface Herramientas {
     cap?: string;
     precioestandar?:number;
     usuarioreg?: string;
-    fechareg?: Date;
+    fechareg?: string;
     usuariomod?: string;
-    fechamod?: Date
+    fechamod?: string
 }
 
 export default Herramientas;
