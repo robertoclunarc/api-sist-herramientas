@@ -3,14 +3,15 @@ import Herramientas from "../models/herramientas.models";
 import db from "../../database/db";
 
 export async function getHerramienta(req: Request, res: Response): Promise< void > {
-
     let result: any
-
     try {
         result = await db.querySelect('SELECT * FROM herramientas');
+        console.log(result);
             if(!result) {
                 res.status(200).json({message: 'Sin resultados'})
             }
+        const herramientas: Herramientas[] = result;
+        res.status(200).json(herramientas);    
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion getHerramienta'})
     }    
