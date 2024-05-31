@@ -6,9 +6,9 @@ interface Solicitante {
     area?: string;
     departamento?: string;
     usuarioreg?: string;
-    fechareg?: Date;
+    fechareg?: string;
     usuariomod?: string;
-    fechamod?: Date
+    fechamod?: string
 }
 
 export default Solicitante;

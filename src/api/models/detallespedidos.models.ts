@@ -11,11 +11,11 @@ interface DetallePedidos {
     preciopedido?: number;
     totalpedido?: number;
     estatus?: string;
-    fechadevolucion: Date;
+    fechadevolucion: string;
     usuarioreg?: string;
-    fechareg?: Date;
+    fechareg?: string;
     usuariomod?: string;
-    fechamod?: Date
+    fechamod?: string
 }
 
 export default DetallePedidos;

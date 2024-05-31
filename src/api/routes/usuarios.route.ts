@@ -3,10 +3,10 @@ import { createUsuario, deleteUsuario, getUsuario, logear, updateUsuario } from 
 
 const router = express.Router();
 
-router.get('/login', getUsuario);
+router.get('/all', getUsuario);
 router.post('/logear', logear);
-router.post('/login', createUsuario);
-router.put('/login', updateUsuario);
-router.delete('/login', deleteUsuario);
+router.post('/insertar', createUsuario);
+router.put('/update/:id', updateUsuario);
+router.delete('/delete/:id', deleteUsuario);
 
 export default router;

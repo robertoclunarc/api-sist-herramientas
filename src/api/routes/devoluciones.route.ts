@@ -3,10 +3,10 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/devolcione', getDevolucione);
-router.get('/devolucione/:id', getDevolucionePorId);
-router.post('/devlucione', createDevolucione);
-router.put('/devolucione/:id', updateDevolucione);
-router.delete('/devolucione/:id', deleteDevolucione);
+router.get('/all', getDevolucione);
+router.get('/getid/:id', getDevolucionePorId);
+router.post('/insertr', createDevolucione);
+router.put('/update/:id', updateDevolucione);
+router.delete('/delete/:id', deleteDevolucione);
 
 export default router;

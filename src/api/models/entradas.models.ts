@@ -2,7 +2,7 @@ interface Entrada {
 
     identrada?: number;
     codigoentradaant?: string;
-    fechaentrada?: Date;
+    fechaentrada?: string;
     codigoherramienta?: string;
     descripcion?: string;
     cantidad?: number;
@@ -15,11 +15,11 @@ interface Entrada {
     provedor?: string;
     preciopedido?: number;
     precioestandar?: number;
-    hora?: Date;
+    hora?: string;
     usuarioreg?: string;
-    fechareg?: Date;
+    fechareg?: string;
     usuariomod?: string;
-    fechamod?: Date
+    fechamod?: string
     
 }
 

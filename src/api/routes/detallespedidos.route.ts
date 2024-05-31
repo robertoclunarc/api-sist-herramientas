@@ -3,10 +3,10 @@ import  express  from "express";
 
 const router = express.Router();
 
-router.get('/detalle_pedido', getDetallePedido);
-router.get('/detalle_pedido/:id', getDetallePedidoPorId);
-router.post('/detalle_pedido', createDetallePedido);
-router.put('/detalle_pedido/:id', updateDetallePedido);
-router.delete('/detalle_pedido/:id', deleteDetallePedido);
+router.get('/all', getDetallePedido);
+router.get('/getid/:id', getDetallePedidoPorId);
+router.post('/insertar', createDetallePedido);
+router.put('/update/:id', updateDetallePedido);
+router.delete('/delete/:id', deleteDetallePedido);
 
 export default router;

@@ -37,16 +37,13 @@ export async function getHerramientaPorId(req: Request, res: Response) {
 
 export async function createHerramienta(req: Request, res: Response) {
 
-    const herramientas: Herramientas = req.body;
+    const herramienta: Herramientas = req.body;
     let result: any;
 
     try {
-        result = await db.querySelect('INSERT INTO herramientas SET ?', [herramientas]);
-        herramientas.idherramienta = result.insertId;
-        res.status(200).json({
-            message: 'Se registro exitosamente',
-            id: herramientas.idherramienta
-        })
+        result = await db.querySelect('INSERT INTO herramientas SET ?', [herramienta]);
+        herramienta.idherramienta = result.insertId;
+        res.status(200).json(herramienta)
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion createHerramienta'})
     }

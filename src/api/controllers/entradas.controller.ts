@@ -37,16 +37,13 @@ export async function getEntradaPorId(req: Request, res: Response) {
 
 export async function createEntrada(req: Request, res: Response) {
 
-    const entradas: Entrada = req.body;
+    const entrada: Entrada = req.body;
     let result: any;
 
     try {
-        result = await db.querySelect('INSERT INTO devoluciones SET ?', [entradas]);
-        entradas.identrada = result.insertId;
-        res.status(200).json({
-            message: 'Se registro correctamente',
-            id: entradas.identrada
-        })
+        result = await db.querySelect('INSERT INTO devoluciones SET ?', [entrada]);
+        entrada.identrada = result.insertId;
+        res.status(200).json({entrada})
     } catch (error) {
         res.status(200).json({errror: error, message: 'Error en la funcion createEntrada'})
     }

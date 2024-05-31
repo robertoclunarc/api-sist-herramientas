@@ -10,9 +10,9 @@ interface DetalleEntrada {
     cantidad?: number;
     preciopedido?: number;
     usuarioreg?: string;
-    fechareg?: Date;
+    fechareg?: string;
     usuariomod?: string;
-    fechamod?: Date
+    fechamod?: string
 }
 
 export default  DetalleEntrada;
