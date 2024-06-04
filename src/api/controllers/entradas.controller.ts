@@ -28,7 +28,7 @@ export async function getEntradaPorId(req: Request, res: Response) {
                 res.status(200).json({message: 'No hay resultado'})
             }
             entradas = result;
-            res.status(200).json(entradas)
+            res.status(200).json(result)
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion getEntradaPorId'})
     }

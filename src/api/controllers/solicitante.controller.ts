@@ -11,6 +11,7 @@ export async function getSolicitante(req: Request, res: Response): Promise< void
             if(!result) {
                 res.status(200).json({message: 'Sin resultados'})
             }
+            
             res.status(200).json(result)
     } catch (error) {
         res.status(400).json({error: error, message: 'Error en la funcion getSolicitante'})

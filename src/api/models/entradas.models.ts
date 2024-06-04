@@ -7,7 +7,7 @@ interface Entrada {
     descripcion?: string;
     cantidad?: number;
     notaentrega?: string;
-    ordenentrega?: string;
+    ordencompra?: string;
     observacion?: string;
     estatus?: string;
     totalstock?: number
